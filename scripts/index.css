@@ -1,3 +1,19 @@
+* {
+    box-sizing: border-box;
+}
 .dropdown {
     background-color: grey;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.bookmarks {
+    width: 70%;
+}
+
+.dropdown-expanded {
+    border: 1px solid black;
+    width: 70%;
 }

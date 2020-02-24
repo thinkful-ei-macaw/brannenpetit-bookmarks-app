@@ -30,16 +30,16 @@
     </form>
     <ul class="bookmarks-list js-bookmarks-list">
       <li class="bookmarks" id="bookmark-1">
-        <button>Title 1 4 star</button>
+        <button class="bookmarks">Title 1 4 star</button>
       </li>
       <li class="bookmarks" id="bookmark-1">
-        <button>Title 2 2 star</button>
+        <button class="bookmarks">Title 2 2 star</button>
       </li>
       <li class="bookmarks" id="bookmark-1">
-        <button>Title 3 1 star</button>
+        <button class="bookmarks">Title 3 1 star</button>
       </li>
       <li class="bookmarks" id="bookmark-1">
-        <button>Title 4 5 Star</button>
+        <button class="bookmarks">Title 4 5 star</button>
       </li>
     </ul>
   </div>
@@ -74,3 +74,77 @@
   error: null,
   filter: 0
 }; </code>
+
+<!-- Expanded bookmark view -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bookmarks App</title>
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="scripts/index.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Bookmarks App</h1>
+    <form id="js-bookmarks-form">
+      <div class="error-container" hidden>Some error text</div>
+      <label for="bookmarks-entry"></label>
+      <button type="submit" name="bookmarks-entry" class="js-bookmarks-entry">Add bookmark</button>
+      <label for="filter-rating"></label>
+      <select id="filter-rating" name="filter-rating" value="Rating" class="dropdown">
+          <option value="0">Filter Rating</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+      </select>
+    </form>
+    <ul class="bookmarks-list js-bookmarks-list">
+      <li class="bookmarks" id="bookmark-1">
+        <button class="bookmarks">Title 1 4 star</button>
+        <div class="dropdown-expanded">
+          <button>Visit Site</button>
+          <p class="description">This will be a description of the url bookmark</p>
+        </div>
+      </li>
+      <li class="bookmarks" id="bookmark-1">
+        <button class="bookmarks">Title 2 2 star</button>
+      </li>
+      <li class="bookmarks" id="bookmark-1">
+        <button class="bookmarks">Title 3 1 star</button>
+      </li>
+      <li class="bookmarks" id="bookmark-1">
+        <button class="bookmarks">Title 4 5 star</button>
+      </li>
+    </ul>
+  </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="module" src="scripts/index.js"></script>
+</body>
+
+</html>
+<code>const store = {
+  bookmarks: [
+    {
+      id: '7ddr',
+      title: 'Title 11',
+      rating: 5,
+      url: 'http://www.title11.com',
+      description: 'lorem ipsum dolor',
+      expanded: true
+    }
+    ...
+  ],
+  adding: false,
+  error: null,
+  filter: 0,
+  expanded: true
+};</code>
+
