@@ -100,13 +100,21 @@ function handleNewBookmarkSubmit() {
 }
 
 function handleExtendedViewSelection(){
-   
+   /*if(store.bookmarks.expanded === false) { */
     $('ul').on('click', '.bookmarks', event => {
         event.preventDefault();
         const id = getBookmarkIdFromElement(event.target);
         renderExtendedView(id);
+        store.expanded = true;
     })
+} /* if(store.expanded === true) {
+    $('ul').on('click', '.bookmarks', event => {
+        event.preventDefault();
+        render();
+        store.expanded = false;
+})
 }
+} */
 
 
 
@@ -129,6 +137,22 @@ function handleDeleteBookmarkClicked() {
 
 function handleRatingSelect() {
     // this function will listen for a selection on the rating selector and filter the bookmark list
+    $("select").change( function() {
+        let selectedVal = $(this).find(':selected').val();
+        if (selectedVal === 1) {
+            render();
+        }   /*if (selectedVal === 2){
+            //render all but 1/5 rating
+        }  if (selectedVal === 3){
+            //render all but below 2/5 rating
+        } if (selectedVal === 4){
+            //render all but below 3/5 rating
+        } if (selectedVal === 5){
+            //render all but below 4/5 rating
+        } else {
+            //render all bookmarks
+        } */
+    } )
 }
 
 
@@ -136,6 +160,7 @@ function bindEventListeners() {
     //This function will call all event listeners that contain everything else to be use by user
     handleNewBookmarkSubmit();
     handleExtendedViewSelection();
+    handleRatingSelect();
    
 }
 
