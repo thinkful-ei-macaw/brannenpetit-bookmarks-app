@@ -1,9 +1,7 @@
 
-import $ from 'jquery';
-import api from './api';
+// import api from './api';
 // import 'normalize.css';
-import './index.css';
-import store from './store';
+// import store from './store';
 import bookmarklist from './bookmarks-list.js';
 
 const main = function () {
