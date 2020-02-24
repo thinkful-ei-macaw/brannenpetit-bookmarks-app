@@ -12,6 +12,7 @@ const main = function () {
   });
   bookmarklist.bindEventListeners(); */
   bookmarklist.render();
+  bookmarklist.bindEventListeners();
   
 };
 

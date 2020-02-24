@@ -25,8 +25,9 @@ const bookmarks = {
 let error = null;
 let filterByRating = false;
 
-function findById(){
+function findById(id){
     //this function will find a bookmark by id in order to show a detailed view from the default landing page
+    return bookmarks.bookmarks.find(item => item.id === id)
 };
 
 function addBookmark() {

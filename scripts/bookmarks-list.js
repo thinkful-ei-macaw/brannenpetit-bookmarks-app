@@ -26,7 +26,7 @@ function generateLandingPage() {
 }
 function generateBookmarkElement(bookmark) {
     //this function will generate the bookmark element for individual bookmarks
-    return `<li class="bookmarks" id="${bookmark.title}">
+    return `<li class="bookmark" name="${bookmark.title}" id="${bookmark.id}">
     <button class="bookmarks">${bookmark.title} ${bookmark.rating}/5</button>
   </li>`
 }
@@ -80,8 +80,32 @@ function render() {
     $('.main-container').append(generateLandingPage());
 }
 
+function renderAddBookmarkPage() {
+    $("main").html(generateCreateBookmarkPage())
+}
+
+function renderExtendedView(id){
+    const bookmark = store.findById(id);
+    $(`#${id}`).append(generateExtendedView(bookmark));
+}
+
 function handleNewBookmarkSubmit() {
     //this function will look for a submit on the new bookmark button, prevent default, and then render the create new bookmark page
+    $(".js-bookmarks-entry").on("click",  event => {
+        event.preventDefault();
+        renderAddBookmarkPage();
+        console.log('its all coming together')
+
+    })
+}
+
+function handleExtendedViewSelection(){
+   
+    $('ul').on('click', '.bookmarks', event => {
+        event.preventDefault();
+        const id = getBookmarkIdFromElement(event.target);
+        renderExtendedView(id);
+    })
 }
 
 
@@ -90,9 +114,9 @@ function handleCreatedBookmarkSubmit() {
     // this function will listen for a submission on the create bookmark page and submit the inputs provided into the factory function for bookmark objects and send that to the server store and current store
 }
 
-function getBookmarkIdFromElement(bookmark) {
+function getBookmarkIdFromElement(button) {
     //this function will return the id from the bookmark that gets clicked
-    return $(bookmark).closest('.js-bookmark-element').data('item-id');
+    return $(button).closest('.bookmark').attr('id');
 }
 
 function generateError() {}
@@ -110,6 +134,9 @@ function handleRatingSelect() {
 
 function bindEventListeners() {
     //This function will call all event listeners that contain everything else to be use by user
+    handleNewBookmarkSubmit();
+    handleExtendedViewSelection();
+   
 }
 
 export default {
