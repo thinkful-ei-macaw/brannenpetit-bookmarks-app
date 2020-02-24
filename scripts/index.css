@@ -17,3 +17,22 @@ ul {
     border: 1px solid black;
     width: 70%;
 }
+
+section {
+    border: 1px solid black;
+    width: fit-content;
+    height: 150px;
+}
+
+.enter-description {
+    height: 120px;
+}
+
+.cancel-button, .create-button {
+    width: 100px;
+}
+
+.error-container {
+    border: 1px solid grey;
+    width: fit-content;
+}

@@ -77,18 +77,6 @@
 
 <!-- Expanded bookmark view -->
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Bookmarks App</title>
-  <link rel="shortcut icon" href="#">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" href="scripts/index.css">
-</head>
-
-<body>
   <div class="container">
     <h1>Bookmarks App</h1>
     <form id="js-bookmarks-form">
@@ -124,12 +112,8 @@
       </li>
     </ul>
   </div>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="module" src="scripts/index.js"></script>
-</body>
+  
 
-</html>
 <code>const store = {
   bookmarks: [
     {
@@ -148,3 +132,72 @@
   expanded: true
 };</code>
 
+<!-- Add New bookmark view -->
+
+<div class="container">
+  <h1>Bookmarks App</h1>
+  <form id="js-new-bookmarks-form">
+    <div class="error-container" hidden>Some error text</div>
+    <label for="adding-bookmarks-entry">Add New Bookmark</label><br>
+    <input type="text" name="bookmarks-entry" class="js-bookmarks-entry"><br>
+    <label for="title-input"></label><br>
+    <input type="text" name="bookmark-title-entry" class="bookmark-title-entry" placeholder="Add Title for Bookmark">
+    <section>
+      <select id="choose-rating" name="choose-rating" value="choose-rating" class="dropdown" required>
+        <option value="0">Select Bookmark Rating</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <div class='expandable-description-box'>
+        <input type="text" class="enter-description" name="enter-description" placeholder="Add a descritiopn (optional)">
+      </div>
+    </section>
+    <button type="submit" class="cancel-button" name="cancel-button">Cancel</button>
+    <button type="submit" class="create-button" name="create-button">Create</button>
+  </form>
+</div>
+<code>const store = {
+  bookmarks: [...],
+  adding: true,
+  error: null,
+  filter: 0,
+  expanded: false;
+};</code>
+
+<!-- Form Error Add New bookmark view -->
+
+<div class="container">
+  <h1>Bookmarks App</h1>
+  <form id="js-new-bookmarks-form">
+    <div class="error-container" >Rating required</div>
+    <label for="adding-bookmarks-entry">Add New Bookmark</label><br>
+    <input type="text" name="bookmarks-entry" class="js-bookmarks-entry"><br>
+    <label for="title-input"></label><br>
+    <input type="text" name="bookmark-title-entry" class="bookmark-title-entry" placeholder="Add Title for Bookmark">
+    <section>
+      <select id="choose-rating" name="choose-rating" value="choose-rating" class="dropdown" required>
+        <option value="0">Select Bookmark Rating</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <div class='expandable-description-box'>
+        <input type="text" class="enter-description" name="enter-description" placeholder="Add a descritiopn (optional)">
+      </div>
+    </section>
+    <button type="submit" class="cancel-button" name="cancel-button">Cancel</button>
+    <button type="submit" class="create-button" name="create-button">Create</button>
+  </form>
+</div>
+<code>const store = {
+  bookmarks: [...],
+  adding: true,
+  error: ${error.message},
+  filter: 0,
+  expanded: false;
+};</code>

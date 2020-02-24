@@ -1,5 +1,5 @@
 
-function stopIt() {
+/* function stopIt() {
     $('button').on("click", event => {
         event.preventDefault();
         console.log("hi");
@@ -7,4 +7,4 @@ function stopIt() {
     })
 }
 
-$(stopIt);
+$(stopIt); */
