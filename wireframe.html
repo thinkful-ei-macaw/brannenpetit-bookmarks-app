@@ -1,10 +1,14 @@
+<!-- landing page html wireframe -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title>Bookmarks App</title>
   <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="scripts/index.css">
 </head>
 
 <body>
@@ -25,6 +29,18 @@
       </select>
     </form>
     <ul class="bookmarks-list js-bookmarks-list">
+      <li class="bookmarks" id="bookmark-1">
+        <button>Title 1 4 star</button>
+      </li>
+      <li class="bookmarks" id="bookmark-1">
+        <button>Title 2 2 star</button>
+      </li>
+      <li class="bookmarks" id="bookmark-1">
+        <button>Title 3 1 star</button>
+      </li>
+      <li class="bookmarks" id="bookmark-1">
+        <button>Title 4 5 Star</button>
+      </li>
     </ul>
   </div>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
@@ -33,3 +49,28 @@
 </body>
 
 </html>
+
+<code>const store = {
+  bookmarks: [
+    {
+      id: 'x56w',
+      title: 'Title 1',
+      rating: 3,
+      url: 'http://www.title1.com',
+      description: 'lorem ipsum dolor sit',
+      expanded: false
+    },
+    {
+      id: '6ffw',
+      title: 'Title 2',
+      rating: 5,
+      url: 'http://www.title2.com',
+      description: 'dolorum tempore deserunt',
+      expanded: false
+    } 
+    ...
+  ],
+  adding: false,
+  error: null,
+  filter: 0
+}; </code>

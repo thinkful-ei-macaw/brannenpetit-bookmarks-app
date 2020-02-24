@@ -4,7 +4,9 @@
 <head>
   <title>Bookmarks App</title>
   <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="scripts/index.css">
 </head>
 
 <body>
@@ -13,7 +15,7 @@
     <form id="js-bookmarks-form">
       <div class="error-container" hidden>Some error text</div>
       <label for="bookmarks-entry"></label>
-      <button type="submit" name="bookmarks-entry" class="js-bookmarks-entry">Add bookmark</button>
+      <button type="submit" name="bookmarks-entry" class="js-bookmarks-entry" id='new'>Add bookmark</button>
       <label for="filter-rating"></label>
       <select id="filter-rating" name="filter-rating" value="Rating" class="dropdown">
           <option value="0">Filter Rating</option>
