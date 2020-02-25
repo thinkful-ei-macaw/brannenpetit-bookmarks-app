@@ -121,7 +121,7 @@ function handleDeleteBookmarkClicked() {
 }
 
 function render() {
-    
+    renderError();
     //renderError
     //this function will check if a filter has been applied for rating then place the generated bookmarks string in the index.html
     $('main').html(generateLandingPage());
@@ -188,10 +188,22 @@ function generateError(message) {
         <button id="cancel-error">X</button>
         <p>${message}</p>
     </section>
-    `
-}
-function renderError() {}
-function handleCloseError() {}
+    `;
+};
+function renderError() {
+    if(store.bookmarks.error) {
+        const el = generateError(store.bookmarks.error);
+        $('main').append(el);
+    } else {
+        $('.error-text').remove()
+    };
+};
+function handleCloseError() {
+    $('main').on('click', '#cancel-error', () => {
+        store.setError(null);
+        renderError();
+    });
+};
 
 
 
@@ -213,6 +225,7 @@ function bindEventListeners() {
     handleRatingSelect();
     handleCreateButton();
     handleDeleteBookmarkClicked();
+    handleCloseError();
    
 }
 

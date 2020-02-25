@@ -5,7 +5,7 @@ const bookmarks = {
     filter: 0
   };
 
-let error = null;
+bookmarks.error = null;
 let filterByRating = false;
 
 function findById(id){
@@ -19,7 +19,7 @@ function addBookmark(newBook) {
 };
 
 function setError(error) {
-  bookmarks.bookmarks.error = error;
+  bookmarks.error = error;
 }
 
 function findAndDeleteBookmark(id) {
@@ -33,7 +33,6 @@ function findAndDeleteBookmark(id) {
 
 export default {
     bookmarks,
-    error,
     filterByRating,
     findById,
     addBookmark,
