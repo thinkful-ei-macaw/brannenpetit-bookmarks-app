@@ -1,10 +1,9 @@
-// import api from './api';
+import api from './api.js';
 import store from './store.js';
 
 function generateLandingPage() {
     return `<h1>Bookmarks App</h1>
     <form id="js-bookmarks-form">
-      <div class="error-container" hidden>Some error text</div>
       <label for="bookmarks-entry"></label>
       <button type="submit" name="bookmarks-entry" class="js-bookmarks-entry">Add bookmark</button>
       <label for="filter-rating"></label>
@@ -32,7 +31,7 @@ function generateBookmarkElement(bookmark) {
         <div class="dropdown-expanded hidden">
          <a href="${bookmark.url}">Visit Site</a>
          <button type="submit" class="delete-button" name="delete-button">Delete</button>
-         <p class="description">$${bookmark.url}</p>
+         <p class="description">${bookmark.desc}</p>
        </div>
     </li>`
 }
@@ -64,7 +63,7 @@ function generateCreateBookmarkPage() {
     <form id="js-new-bookmarks-form">
       <div class="error-container" hidden>Some error text</div>
       <label for="adding-bookmarks-entry">Add New Bookmark</label><br>
-      <input type="text" name="bookmarks-entry" class="js-bookmarks-entry"><br>
+      <input type="url" name="bookmarks-entry" class="js-bookmarks-url-entry" required><br>
       <label for="title-input"></label><br>
       <input type="text" name="bookmark-title-entry" class="bookmark-title-entry" placeholder="Add Title for Bookmark">
       <section>
@@ -86,15 +85,50 @@ function generateCreateBookmarkPage() {
   </div>`
 }
 
+function handleCreateButton() {
+    console.log('why isnt this working')
+    $('main').on('click', '.create-button', event => {
+        event.preventDefault();
+        const newBookmarkTitle = $('.bookmark-title-entry').val();
+        const newBookmarkUrl = $('.js-bookmarks-url-entry').val();
+        const newBookmarkRating = $('#choose-rating').val();
+        const newBookmarkDescription = $('.enter-description').val();
+        store.bookmarks.adding = false
+        api.createBookmark(newBookmarkTitle, newBookmarkUrl, newBookmarkDescription, newBookmarkRating).then((newBookmark) => {
+            store.addBookmark(newBookmark);
+            render();
+        }).catch((error) => {
+            store.setError(error.message);
+            renderError();
+        })
+    })
+}
+
+function handleDeleteBookmarkClicked() {
+    //this function will listen for a delete on a specific bookmark element and remove that from the store
+    console.log('ive got this');
+    $('main').on('click', '.delete-button', event => {
+        const id = getBookmarkIdFromElement(event.currentTarget);
+        event.preventDefault();
+        api.deleteBookmark(id).then(() => {
+            store.findAndDeleteBookmark(id);
+            render();
+        }).catch((error) => {
+            store.setError(error.message);
+            renderError();
+        })
+    })
+}
+
 function render() {
     
     //renderError
     //this function will check if a filter has been applied for rating then place the generated bookmarks string in the index.html
-    $('.main-container').html(generateLandingPage());
+    $('main').html(generateLandingPage());
 }
 
 function renderAddBookmarkPage() {
-    $("main").html(generateCreateBookmarkPage())
+    $('main').html(generateCreateBookmarkPage())
 }
 
 /* function renderExtendedView(id){
@@ -104,9 +138,10 @@ function renderAddBookmarkPage() {
 
 function handleNewBookmarkSubmit() {
     //this function will look for a submit on the new bookmark button, prevent default, and then render the create new bookmark page
-    $(".js-bookmarks-entry").on("click",  event => {
+    $('main').on('click', '.js-bookmarks-entry',  event => {
         event.preventDefault();
         renderAddBookmarkPage();
+        store.bookmarks.adding = true
         console.log('its all coming together')
 
     })
@@ -120,7 +155,7 @@ function getBookmarkIdFromElement(button) {
 function handleExtendedViewSelection(){
    /*if(store.bookmarks.expanded === false) { */
     
-    $('main').on('click', 'button', event => {
+    $('main').on('click', '.bookmarks', event => {
         console.log('function runnin');
         event.preventDefault();
         $(event.target).closest('li').find('div').toggleClass('hidden');
@@ -147,13 +182,18 @@ function handleCreatedBookmarkSubmit() {
 
 
 
-function generateError() {}
+function generateError(message) {
+    return `
+    <section class="error-text">
+        <button id="cancel-error">X</button>
+        <p>${message}</p>
+    </section>
+    `
+}
 function renderError() {}
 function handleCloseError() {}
 
-function handleDeleteBookmarkClicked() {
-    //this function will listen for a delete on a specific bookmark element and remove that from the store
-}
+
 
 function handleRatingSelect() {
     // this function will listen for a selection on the rating selector and filter the bookmark list
@@ -171,6 +211,8 @@ function bindEventListeners() {
     handleNewBookmarkSubmit();
     handleExtendedViewSelection();
     handleRatingSelect();
+    handleCreateButton();
+    handleDeleteBookmarkClicked();
    
 }
 

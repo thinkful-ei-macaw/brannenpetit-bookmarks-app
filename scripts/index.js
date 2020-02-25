@@ -1,16 +1,15 @@
 
-// import api from './api';
+import api from './api.js';
 // import 'normalize.css';
-// import store from './store';
+import store from './store.js';
 import bookmarklists from './bookmarks-list.js';
 
 const main = function () {
- /*api.getBookmarks()
+ api.getBookmarks()
   .then((bookmarks) => {
-    bookmarks.forEach((bookmark) => store.addItem(bookmark));
-    bookmarklist.render();
+    bookmarks.forEach((bookmark) => store.addBookmark(bookmark));
+    bookmarklists.render();
   });
-  bookmarklist.bindEventListeners(); */
   bookmarklists.render();
   bookmarklists.bindEventListeners();
   

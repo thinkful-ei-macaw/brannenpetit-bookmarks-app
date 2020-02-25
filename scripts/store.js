@@ -1,22 +1,5 @@
 const bookmarks = {
-    bookmarks: [
-      {
-        id: 'x56w',
-        title: 'Title 1',
-        rating: 3,
-        url: 'http://www.title1.com',
-        description: 'lorem ipsum dolor sit',
-        expanded: false
-      },
-      {
-        id: '6ffw',
-        title: 'Title 2',
-        rating: 5,
-        url: 'http://www.title2.com',
-        description: 'dolorum tempore deserunt',
-        expanded: false
-      } 
-    ],
+    bookmarks: [],
     adding: false,
     error: null,
     filter: 0
@@ -30,17 +13,23 @@ function findById(id){
     return bookmarks.bookmarks.find(item => item.id === id)
 };
 
-function addBookmark(title) {
+function addBookmark(newBook) {
     //this function will add a bookmark to the store
+    bookmarks.bookmarks.push(newBook);
 };
 
-function findAndDeleteBookmark() {
-    //this function will find a bookmark by id and delete that bookmark from the store
+function setError(error) {
+  bookmarks.bookmarks.error = error;
 }
 
-function addRating() {
+function findAndDeleteBookmark(id) {
+    //this function will find a bookmark by id and delete that bookmark from the store
+    bookmarks.bookmarks = bookmarks.bookmarks.filter(currentBook => currentBook.id !== id);
+}
+
+/*function addRating(rating) {
     //this function will set the rating value of the bookmark
-};
+};*/
 
 export default {
     bookmarks,
@@ -49,5 +38,5 @@ export default {
     findById,
     addBookmark,
     findAndDeleteBookmark,
-    addRating,
+    setError
 }
