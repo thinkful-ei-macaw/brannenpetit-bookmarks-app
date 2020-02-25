@@ -17,7 +17,7 @@ function generateLandingPage() {
           <option value="5">5</option>
       </select>
       <ul class="bookmarks-list js-bookmarks-list">
-        ${generateBookmarksString(store.bookmarks.bookmarks)}
+        ${generateBookmarksString(store.bookmarks.bookmarks, store.bookmarks.filter)}
 
 
 
@@ -26,23 +26,36 @@ function generateLandingPage() {
 }
 function generateBookmarkElement(bookmark) {
     //this function will generate the bookmark element for individual bookmarks
-    return `<li class="bookmark" name="${bookmark.title}" id="${bookmark.id}">
-    <button class="bookmarks">${bookmark.title} ${bookmark.rating}/5</button>
-  </li>`
+    return`
+    <li class="bookmark" name="${bookmark.title}" id="${bookmark.id}">
+     <button class="bookmarks">${bookmark.title} ${bookmark.rating}/5</button>
+        <div class="dropdown-expanded hidden">
+         <a href="${bookmark.url}">Visit Site</a>
+         <button type="submit" class="delete-button" name="delete-button">Delete</button>
+         <p class="description">$${bookmark.url}</p>
+       </div>
+    </li>`
 }
 
-function generateBookmarksString(bookmarklist){
-    const bookmarks = bookmarklist.map((bookmark) => generateBookmarkElement(bookmark));
+function generateBookmarksString(bookmarklist, filter){
+    let bookmarks = bookmarklist
+    if(filter){ 
+        bookmarks = bookmarks.filter(function(item) {
+            return item.rating >= filter;    
+        })
+    }
+    bookmarks = bookmarks.map((bookmark) => generateBookmarkElement(bookmark));
     return bookmarks.join('');
 }
 
-function generateExtendedView(bookmark) {
+/*function generateExtendedView(bookmark) {
     //this function will generate html and return it for the generation of extended view
     return `<div class="dropdown-expanded">
     <a href="${bookmark.url}">Visit Site</a>
+    <button type="submit" class="delete-button" name="delete-button">Delete</button>
     <p class="description">$${bookmark.url}</p>
   </div>`
-}
+} */
 
 function generateCreateBookmarkPage() {
     //this function will return the html necessary for the submission of a new bookmark into the store
@@ -77,17 +90,17 @@ function render() {
     
     //renderError
     //this function will check if a filter has been applied for rating then place the generated bookmarks string in the index.html
-    $('.main-container').append(generateLandingPage());
+    $('.main-container').html(generateLandingPage());
 }
 
 function renderAddBookmarkPage() {
     $("main").html(generateCreateBookmarkPage())
 }
 
-function renderExtendedView(id){
+/* function renderExtendedView(id){
     const bookmark = store.findById(id);
     $(`#${id}`).append(generateExtendedView(bookmark));
-}
+} */
 
 function handleNewBookmarkSubmit() {
     //this function will look for a submit on the new bookmark button, prevent default, and then render the create new bookmark page
@@ -99,13 +112,23 @@ function handleNewBookmarkSubmit() {
     })
 }
 
+function getBookmarkIdFromElement(button) {
+    //this function will return the id from the bookmark that gets clicked
+    return $(button).closest('.bookmark').attr('id');
+}
+
 function handleExtendedViewSelection(){
    /*if(store.bookmarks.expanded === false) { */
-    $('ul').on('click', '.bookmarks', event => {
+    
+    $('main').on('click', 'button', event => {
+        console.log('function runnin');
         event.preventDefault();
-        const id = getBookmarkIdFromElement(event.target);
-        renderExtendedView(id);
-        store.expanded = true;
+        $(event.target).closest('li').find('div').toggleClass('hidden');
+        if (store.expanded === false) {
+            store.expanded = true;
+        } if (store.expanded === true){
+            store.expanded = false;
+        }
     })
 } /* if(store.expanded === true) {
     $('ul').on('click', '.bookmarks', event => {
@@ -122,10 +145,7 @@ function handleCreatedBookmarkSubmit() {
     // this function will listen for a submission on the create bookmark page and submit the inputs provided into the factory function for bookmark objects and send that to the server store and current store
 }
 
-function getBookmarkIdFromElement(button) {
-    //this function will return the id from the bookmark that gets clicked
-    return $(button).closest('.bookmark').attr('id');
-}
+
 
 function generateError() {}
 function renderError() {}
@@ -137,21 +157,11 @@ function handleDeleteBookmarkClicked() {
 
 function handleRatingSelect() {
     // this function will listen for a selection on the rating selector and filter the bookmark list
-    $("select").change( function() {
+    $("main").on('change', '#filter-rating', function() {
+        console.log($(this).val());
         let selectedVal = $(this).find(':selected').val();
-        if (selectedVal === 1) {
-            render();
-        }   /*if (selectedVal === 2){
-            //render all but 1/5 rating
-        }  if (selectedVal === 3){
-            //render all but below 2/5 rating
-        } if (selectedVal === 4){
-            //render all but below 3/5 rating
-        } if (selectedVal === 5){
-            //render all but below 4/5 rating
-        } else {
-            //render all bookmarks
-        } */
+        store.bookmarks.filter = parseInt(selectedVal);
+        render();
     } )
 }
 

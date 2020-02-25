@@ -30,7 +30,7 @@ function findById(id){
     return bookmarks.bookmarks.find(item => item.id === id)
 };
 
-function addBookmark() {
+function addBookmark(title) {
     //this function will add a bookmark to the store
 };
 

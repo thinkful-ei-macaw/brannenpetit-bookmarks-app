@@ -2,7 +2,7 @@
 // import api from './api';
 // import 'normalize.css';
 // import store from './store';
-import bookmarklist from './bookmarks-list.js';
+import bookmarklists from './bookmarks-list.js';
 
 const main = function () {
  /*api.getBookmarks()
@@ -11,8 +11,8 @@ const main = function () {
     bookmarklist.render();
   });
   bookmarklist.bindEventListeners(); */
-  bookmarklist.render();
-  bookmarklist.bindEventListeners();
+  bookmarklists.render();
+  bookmarklists.bindEventListeners();
   
 };
 
