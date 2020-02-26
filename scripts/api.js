@@ -8,22 +8,21 @@ function getBookmarks() {
     // this function will GET the current server store to display in landing page or any updates
     return bookmarksApiFetch(`${BASE_URL}/bookmarks`)
 }
-function createBookmark(title, url, description, rating) {
+function createBookmark(title, url, description = 'placeholder', rating) {
     //this function will create a new bookmark and turn it into JSON
     //then post to the server store
-    const newBookmark = JSON.stringify({
-        'id': cuid(),
+    const newBookmark = {
         'title': title,
-        'rating': rating,
         'url': url,
-        'desc': description,
-        'expanded': false
-    })
-    console.log(newBookmark)
+        'rating': rating,
+        'desc': description
+    }
+    
+    const jsonText = JSON.stringify(newBookmark);
     return bookmarksApiFetch(`${BASE_URL}/bookmarks`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json'} ,
-        body: newBookmark
+        body: jsonText
     })
 }
 

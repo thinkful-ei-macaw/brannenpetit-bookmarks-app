@@ -3,11 +3,12 @@ import store from './store.js';
 
 function generateLandingPage() {
     return `<h1>Bookmarks App</h1>
+    <h2>Your Website Library</h2>
     <div class="form-container">
     <form id="js-bookmarks-form">
       <label for="bookmarks-entry"></label>
-      <button type="submit" name="bookmarks-entry" class="js-bookmarks-entry">Add bookmark</button>
-      <label for="filter-rating"></label>
+      <button type="submit" name="bookmarks-entry" class="js-bookmarks-entry">Add bookmark</button><br>
+      <label for="filter-rating" aria-label="filter-rating-dropdown"></label>
       <select id="filter-rating" name="filter-rating" value="Rating" class="dropdown">
           <option value="0">Filter Rating</option>
           <option value="1">1</option>
@@ -27,11 +28,11 @@ function generateBookmarkElement(bookmark) {
     //this function will generate the bookmark element for individual bookmarks
     return`
     <li class="bookmark" name="${bookmark.title}" id="${bookmark.id}">
-     <button class="bookmarks">${bookmark.title} ${bookmark.rating}/5</button>
+     <button class="bookmarks">${bookmark.title} <span>-${bookmark.rating}/5</span></button>
         <div class="dropdown-expanded hidden">
          <a href="${bookmark.url}">Visit Site</a>
-         <button type="submit" class="delete-button" name="delete-button">Delete</button>
          <p class="description">${bookmark.desc}</p>
+         <button type="submit" class="delete-button" name="delete-button">Delete</button>
        </div>
     </li>`
 }
@@ -59,16 +60,16 @@ function generateBookmarksString(bookmarklist, filter){
 function generateCreateBookmarkPage() {
     //this function will return the html necessary for the submission of a new bookmark into the store
     return `
-    <h1>Bookmarks App</h1>
+    <h1>Create A New Bookmark</h1>
     <form id="js-new-bookmarks-form">
       <div class="error-container" hidden>Some error text</div>
-      <label for="adding-bookmarks-entry">Add New Bookmark</label><br>
-      <input type="url" name="bookmarks-entry" class="js-bookmarks-url-entry" required><br>
-      <label for="title-input"></label><br>
+      <label for="adding-bookmarks-entry">Add New Bookmark URL</label>
+      <input type="url" name="bookmarks-entry" class="js-bookmarks-url-entry" placeholder="https://www.exampleurl.com" required>
+      <label for="title-input">Add Bookmark Title</label>
       <input type="text" name="bookmark-title-entry" class="bookmark-title-entry" placeholder="Add Title for Bookmark">
-      <section>
-        <select id="choose-rating" name="choose-rating" value="choose-rating" class="dropdown" required>
-          <option value="0">Select Bookmark Rating</option>
+      <section class="rating-box">
+        <select id="choose-rating" name="choose-rating" value="choose-rating" class="dropdown">
+          <option value="1">Select Bookmark Rating</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -79,8 +80,8 @@ function generateCreateBookmarkPage() {
           <input type="text" class="enter-description" name="enter-description" placeholder="Add a descritiopn (optional)">
         </div>
       </section>
-      <button type="submit" class="cancel-button" name="cancel-button">Cancel</button>
       <button type="submit" class="create-button" name="create-button">Create</button>
+      <button type="submit" class="cancel-button" name="cancel-button">Cancel</button>
     </form>
   `
 }
