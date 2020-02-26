@@ -1,21 +1,88 @@
 * {
     box-sizing: border-box;
 }
+
+html {
+    background-image: url(https://cdn.hipwallpaper.com/i/13/15/JxnH48.jpg);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+
+h1 {
+    margin-top: 150px;
+    border: 10px solid salmon;
+    margin-left: auto;
+    margin-right: auto;
+    padding: auto;
+    color: black;
+    background-color: white;
+    opacity: .7;
+    height: 100px;
+    width: 50%;
+    text-align: center;
+    
+}
+
+.js-bookmarks-entry {
+    background-color: rgb(126, 192, 26);
+    border: none;
+    padding: 5px 15px;
+    font-size: 32px;
+    font-family: 'IM Fell English SC';
+    margin-left: auto;
+}
+
+#filter-rating {
+    font-family: 'IM Fell English SC';
+    font-size: 28px;
+    padding: 3px ;
+    margin-right: auto;
+}
+
 .dropdown {
     background-color: grey;
 }
 
-ul {
+
+.bookmarks-list {
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+
+
 .bookmarks {
-    width: 70%;
+    margin-bottom: 20px;
+    width: 400px;
+    display: inline-block;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    
 }
+ 
+
+
 
 .dropdown-expanded {
     border: 1px solid black;
     width: 70%;
+    margin-left: 141px;
 }
 
 .hidden {
@@ -27,15 +94,15 @@ section {
     height: 150px;
 }
 
-.enter-description {
-    height: 120px;
+/* this section below for create bookmark page */
+#js-new-bookmarks-form {
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: space-evenly;
+    flex: 200%;
 }
 
-.cancel-button, .create-button {
-    width: 100px;
-}
-
-.error-container {
-    border: 1px solid grey;
-    width: fit-content;
+.bookmark-title-entry {
+    margin-bottom: 20px;
 }

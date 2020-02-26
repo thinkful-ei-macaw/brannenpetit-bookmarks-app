@@ -3,6 +3,7 @@ import store from './store.js';
 
 function generateLandingPage() {
     return `<h1>Bookmarks App</h1>
+    <div class="form-container">
     <form id="js-bookmarks-form">
       <label for="bookmarks-entry"></label>
       <button type="submit" name="bookmarks-entry" class="js-bookmarks-entry">Add bookmark</button>
@@ -15,13 +16,12 @@ function generateLandingPage() {
           <option value="4">4</option>
           <option value="5">5</option>
       </select>
+      </form>
+      </div>
       <ul class="bookmarks-list js-bookmarks-list">
         ${generateBookmarksString(store.bookmarks.bookmarks, store.bookmarks.filter)}
-
-
-
       </ul>
-    </form>`
+    `
 }
 function generateBookmarkElement(bookmark) {
     //this function will generate the bookmark element for individual bookmarks
@@ -58,7 +58,7 @@ function generateBookmarksString(bookmarklist, filter){
 
 function generateCreateBookmarkPage() {
     //this function will return the html necessary for the submission of a new bookmark into the store
-    return `<div class="container">
+    return `
     <h1>Bookmarks App</h1>
     <form id="js-new-bookmarks-form">
       <div class="error-container" hidden>Some error text</div>
@@ -82,7 +82,7 @@ function generateCreateBookmarkPage() {
       <button type="submit" class="cancel-button" name="cancel-button">Cancel</button>
       <button type="submit" class="create-button" name="create-button">Create</button>
     </form>
-  </div>`
+  `
 }
 
 function handleCreateButton() {
@@ -176,8 +176,12 @@ function handleExtendedViewSelection(){
 
 
 
-function handleCreatedBookmarkSubmit() {
+function handleCancelCreateBookmark() {
     // this function will listen for a submission on the create bookmark page and submit the inputs provided into the factory function for bookmark objects and send that to the server store and current store
+    $('main').on('click', '.cancel-button', event => {
+        event.preventDefault();
+        render();
+    })
 }
 
 
@@ -224,6 +228,7 @@ function bindEventListeners() {
     handleExtendedViewSelection();
     handleRatingSelect();
     handleCreateButton();
+    handleCancelCreateBookmark();
     handleDeleteBookmarkClicked();
     handleCloseError();
    
