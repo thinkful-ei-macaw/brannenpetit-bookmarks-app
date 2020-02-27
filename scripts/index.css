@@ -69,7 +69,7 @@ h2 {
 
 #filter-rating {
     font-family: 'IM Fell English SC';
-    font-size: 41px;
+    font-size: 39px;
     padding: 10px;
     border: none;
     border-radius: 10px;
@@ -117,12 +117,9 @@ h2 {
     
 }
 
-.rating-span {
-    float: right;
-}
-
-
-
+span{ width: 600px; display: inline-block; }
+.title-span{ text-align: left }
+.rating-span{ text-align: right }
 
 
 .dropdown-expanded {
