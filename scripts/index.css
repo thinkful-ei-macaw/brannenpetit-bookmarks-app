@@ -143,6 +143,9 @@ h1 {
     display: none;
 }
 
+a {
+    width: fit-content;
+}
 
 /* this section below for create bookmark page */
 #js-new-bookmarks-form {
@@ -235,4 +238,11 @@ h1 {
     .dropdown-expanded {
         font-size: 25px;
     }
+
+    .error-text {
+        position: absolute;
+        top: 350px;
+        left: 800px;
+    }
+    
 }

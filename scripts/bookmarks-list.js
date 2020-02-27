@@ -2,6 +2,7 @@ import api from './api.js';
 import store from './store.js';
 
 function generateLandingPage() {
+    // this function generates the html for the landing page
     return `<h1>Bookmark Library App</h1>
     <div class="form-container">
     <form id="js-bookmarks-form">
@@ -51,15 +52,6 @@ function generateBookmarksString(bookmarklist, filter){
     bookmarks = bookmarks.map((bookmark) => generateBookmarkElement(bookmark));
     return bookmarks.join('');
 }
-
-/*function generateExtendedView(bookmark) {
-    //this function will generate html and return it for the generation of extended view
-    return `<div class="dropdown-expanded">
-    <a href="${bookmark.url}">Visit Site</a>
-    <button type="submit" class="delete-button" name="delete-button">Delete</button>
-    <p class="description">$${bookmark.url}</p>
-  </div>`
-} */
 
 function generateCreateBookmarkPage() {
     //this function will return the html necessary for the submission of a new bookmark into the store
@@ -127,8 +119,6 @@ function handleDeleteBookmarkClicked() {
 
 function render() {
     renderError();
-    //renderError
-    //this function will check if a filter has been applied for rating then place the generated bookmarks string in the index.html
     $('main').html(generateLandingPage());
 }
 
@@ -136,10 +126,6 @@ function renderAddBookmarkPage() {
     $('main').html(generateCreateBookmarkPage())
 }
 
-/* function renderExtendedView(id){
-    const bookmark = store.findById(id);
-    $(`#${id}`).append(generateExtendedView(bookmark));
-} */
 
 function handleNewBookmarkSubmit() {
     //this function will look for a submit on the new bookmark button, prevent default, and then render the create new bookmark page
@@ -160,9 +146,7 @@ function getBookmarkIdFromElement(button) {
 function handleExtendedViewSelection(){
    /*if(store.bookmarks.expanded === false) { */
     
-    $('main').on('click', '.bookmark', event => {
-        console.log('function runnin');
-        event.preventDefault();
+    $('main').on('click', '.bookmark-button', event => {
         $(event.target).closest('li').find('div').toggleClass('hidden');
         if (store.expanded === false) {
             store.expanded = true;
@@ -170,15 +154,7 @@ function handleExtendedViewSelection(){
             store.expanded = false;
         }
     })
-} /* if(store.expanded === true) {
-    $('ul').on('click', '.bookmarks', event => {
-        event.preventDefault();
-        render();
-        store.expanded = false;
-})
-}
-} */
-
+} 
 
 
 function handleCancelCreateBookmark() {
