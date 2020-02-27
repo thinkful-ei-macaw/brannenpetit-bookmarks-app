@@ -65,7 +65,7 @@ function generateCreateBookmarkPage() {
       <input type="text" name="bookmark-title-entry" class="bookmark-title-entry" placeholder="Add Title for Bookmark">
       <section class="rating-box">
         <select id="choose-rating" name="choose-rating" class="dropdown">
-          <option disabled selected value>Select Bookmark Rating</option>
+          <option value="0">Select Bookmark Rating</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
