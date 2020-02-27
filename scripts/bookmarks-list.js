@@ -178,6 +178,7 @@ function generateError(message) {
 function renderError() {
     if(store.bookmarks.error) {
         const el = generateError(store.bookmarks.error);
+        console.log(store.bookmarks.error);
         $('main').append(el);
     } else {
         $('.error-text').remove()
