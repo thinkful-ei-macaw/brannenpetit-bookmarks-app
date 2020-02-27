@@ -117,9 +117,15 @@ h2 {
     
 }
 
-span{ width: 600px; display: inline-block; }
-.title-span{ text-align: left }
-.rating-span{ text-align: right }
+.bookmark-button > span{ display: inline-block; }
+.bookmark-button > .title-span{
+     width: 500px;
+     text-align: left 
+    }
+.bookmark-button > .rating-span{
+     width: 90px;
+     text-align: right 
+    }
 
 
 .dropdown-expanded {
@@ -210,4 +216,35 @@ span{ width: 600px; display: inline-block; }
 #cancel-error{
     position: absolute;
     left:0;
+}
+
+@media (min-width: 1068px) {
+    .form-container{
+        display: flex;
+        flex-direction: row;
+    }
+
+    h1 {
+        font-size:40px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    .js-bookmarks-entry {
+        font-size: 25px;
+    }
+
+    #filter-rating {
+        font-size: 18.5px;
+    }
+
+    .bookmark {
+        font-size: 37px;
+    }
+    
+    .dropdown-expanded {
+        font-size: 25px;
+    }
 }

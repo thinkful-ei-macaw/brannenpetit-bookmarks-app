@@ -148,7 +148,7 @@ function handleNewBookmarkSubmit() {
         event.preventDefault();
         renderAddBookmarkPage();
         store.bookmarks.adding = true
-        console.log('its all coming together')
+        
 
     })
 }
