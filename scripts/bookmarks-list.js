@@ -2,12 +2,11 @@ import api from './api.js';
 import store from './store.js';
 
 function generateLandingPage() {
-    return `<h1>Bookmarks App</h1>
-    <h2>Your Website Library</h2>
+    return `<h1>Bookmark Library App</h1>
     <div class="form-container">
     <form id="js-bookmarks-form">
       <label for="bookmarks-entry"></label>
-      <button type="submit" name="bookmarks-entry" class="js-bookmarks-entry">Add bookmark</button><br>
+      <button type="submit" name="bookmarks-entry" class="js-bookmarks-entry">Add bookmark</button>
       <label for="filter-rating" aria-label="filter-rating-dropdown"></label>
       <select id="filter-rating" name="filter-rating" value="Rating" class="dropdown">
           <option value="1">Current filter: ${store.bookmarks.filter}</option>

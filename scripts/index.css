@@ -38,22 +38,9 @@ h1 {
     width: fit-content;
     text-align: center;
     font-family: 'IM Fell English SC';
-    font-size:80px;
+    font-size:65px;
     padding: 10px;
     
-}
-
-h2 {
-    font-size: 50px;
-    color: black;
-    border: 5px solid rgb(207, 51, 51);
-    background-color:burlywood;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'IM Fell English SC';
-    border-radius: 10px;
-    padding: 10px;
-
 }
 
 .js-bookmarks-entry {
@@ -226,10 +213,6 @@ h2 {
 
     h1 {
         font-size:40px;
-    }
-
-    h2 {
-        font-size: 25px;
     }
 
     .js-bookmarks-entry {
