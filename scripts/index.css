@@ -20,7 +20,12 @@ main {
 .form-container {
     margin-right: auto;
     margin-left: auto;
+    text-align:center;
     
+}
+
+.js-bookmarks-form {
+   text-align: center;
 }
 
 
@@ -47,7 +52,7 @@ h1 {
     background-color: rgb(126, 192, 26);
     border: none;
     border-radius: 10px;
-    padding: 5px 15px;
+    padding: 10px;
     font-size: 50px;
     font-family: 'IM Fell English SC';
     margin-bottom: 20px;
@@ -56,7 +61,7 @@ h1 {
 
 #filter-rating {
     font-family: 'IM Fell English SC';
-    font-size: 39px;
+    font-size: 43px;
     padding: 10px;
     border: none;
     border-radius: 10px;
@@ -220,7 +225,7 @@ h1 {
     }
 
     #filter-rating {
-        font-size: 18.5px;
+        font-size: 22px;
     }
 
     .bookmark {
