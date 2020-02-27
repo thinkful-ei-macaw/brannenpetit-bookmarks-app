@@ -14,8 +14,10 @@ function createBookmark(title, url, description = 'placeholder', rating) {
     const newBookmark = {
         'title': title,
         'url': url,
-        'rating': rating,
         'desc': description
+    }
+    if(rating) {
+        newBookmark.rating = rating;
     }
     
     const jsonText = JSON.stringify(newBookmark);
