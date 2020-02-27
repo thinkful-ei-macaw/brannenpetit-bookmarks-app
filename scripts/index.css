@@ -214,6 +214,11 @@ a {
 }
 
 @media (min-width: 1068px) {
+    
+    main {
+        width: 60%;
+    }
+
     .form-container{
         display: flex;
         flex-direction: row;
